@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>收到邀约 | 求职者主页（演示版）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bossGreen: '#02bcb0',
+                        navDark: '#0b283d',
+                        listHover: '#edf8fc'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .scroll-auto::-webkit-scrollbar{
+            width:4px;
+        }
+        .scroll-auto::-webkit-scrollbar-thumb{
+            background:#ccc;
+            border-radius:4px;
+        }
+        .mask{
+            background: rgba(0,0,0,0.45);
+        }
+    </style>
+</head>
+<body class="bg-[#eef7fc]">
+    <!-- 顶部导航 -->
+    <header class="bg-navDark text-white">
+        <div class="max-w-[1400px] mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+                <span class="text-lg font-bold text-bossGreen">人才沟通平台</span>
+                <nav class="flex gap-5 text-sm opacity-90">
+                    <a href="#">首页</a>
+                    <a href="#" class="text-bossGreen">收到邀约</a>
+                    <a href="#">我的简历</a>
+                    <a href="#">设置</a>
+                </nav>
+            </div>
+            <div class="flex gap-6 items-center text-sm">
+                <span>消息</span>
+                <span>简历</span>
+                <div class="flex items-center gap-2">
+                    <span>求职者</span>
+                    <div class="w-8 h-8 rounded-full bg-gray-400 overflow-hidden">
+                        <img src="https://picsum.photos/id/1005/40/40">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 搜索栏 -->
+    <div class="max-w-[1400px] mx-auto px-4 py-4 flex items-center gap-3">
+        <div class="flex-1 relative">
+            <input id="searchInput" class="w-full rounded-full py-2.5 pl-10 pr-4 outline-none" placeholder="筛选企业邀约">
+            <i class="fa fa-search absolute left-4 top-3 text-gray-400"></i>
+        </div>
+        <button class="bg-bossGreen text-white px-6 py-2.5 rounded-full">筛选邀约</button>
+    </div>
+
+    <!-- 筛选项 -->
+    <div class="max-w-[1400px] mx-auto px-4 flex gap-2 flex-wrap text-sm mb-4">
+        <span class="bg-white px-3 py-1.5 rounded">深圳</span>
+        <span class="bg-white px-3 py-1.5 rounded">薪资</span>
+        <span class="bg-white px-3 py-1.5 rounded">工作年限</span>
+        <span class="bg-white px-3 py-1.5 rounded">学历</span>
+        <span class="bg-white px-3 py-1.5 rounded">邀约状态</span>
+        <span class="text-gray-500 ml-auto cursor-pointer">清空</span>
+    </div>
+
+    <div class="max-w-[1400px] mx-auto px-4 flex gap-4">
+        <!-- 左侧邀约列表 -->
+        <div class="w-[350px] bg-white rounded-lg overflow-hidden">
+            <div class="h-[720px] overflow-y-auto scroll-auto" id="inviteList">
+                <!-- 邀约1 -->
+                <div class="invite-item p-4 border-b bg-listHover cursor-pointer" data-index="0">
+                    <div class="flex justify-between">
+                        <span class="font-medium">云启智科</span>
+                        <span class="text-red-500">13-15K</span>
+                    </div>
+                    <div class="text-sm text-gray-500 mt-1">前端开发工程师</div>
+                    <div class="text-xs text-gray-400 mt-1">3-5年 | 本科</div>
+                    <div class="mt-2 text-xs text-gray-500">
+                        💬 HR主动邀约：看到你的前端履历，想和你沟通C端项目岗位
+                    </div>
+                    <div class="flex justify-between mt-2">
+                        <span class="text-xs text-bossGreen">深圳·福田区</span>
+                        <span class="text-xs bg-amber-100 text-amber-600 px-1.5 py-0.5 rounded">待处理</span>
+                    </div>
+                </div>
+                <!-- 邀约2 -->
+                <div class="invite-item p-4 border-b hover:bg-listHover cursor-pointer" data-index="1">
+                    <div class="flex justify-between">
+                        <span class="font-medium">星瀚数字</span>
+                        <span class="text-red-500">10-14K</span>
+                    </div>
+                    <div class="text-sm text-gray-500 mt-1">前端开发工程师</div>
+                    <div class="text-xs text-gray-400 mt-1">3-5年 | 本科</div>
+                    <div class="mt-2 text-xs text-gray-500">
+                        💬 HR主动邀约：我们金融数字化项目组，想约你简单聊聊
+                    </div>
+                    <div class="flex justify-between mt-2">
+                        <span class="text-xs text-bossGreen">深圳·福田区</span>
+                        <span class="text-xs bg-amber-100 text-amber-600 px-1.5 py-0.5 rounded">待处理</span>
+                    </div>
+                </div>
+                <!-- 邀约3 -->
+                <div class="invite-item p-4 border-b hover:bg-listHover cursor-pointer" data-index="2">
+                    <div class="flex justify-between">
+                        <span class="font-medium">睿创自动化</span>
+                        <span class="text-red-500">15-25K·13薪</span>
+                    </div>
+                    <div class="text-sm text-gray-500 mt-1">web前端开发（上位机方向）</div>
+                    <div class="text-xs text-gray-400 mt-1">经验不限 | 大专</div>
+                    <div class="mt-2 text-xs text-gray-500">
+                        💬 HR主动邀约：工业设备上位机页面开发，看重你的前端功底
+                    </div>
+                    <div class="flex justify-between mt-2">
+                        <span class="text-xs text-bossGreen">深圳·南山区·科技园</span>
+                        <span class="text-xs bg-amber-100 text-amber-600 px-1.5 py-0.5 rounded">待处理</span>
+                    </div>
+                </div>
+                <!-- 邀约4 -->
+                <div class="invite-item p-4 border-b hover:bg-listHover cursor-pointer" data-index="3">
+                    <div class="flex justify-between">
+                        <span class="font-medium">数联星云</span>
+                        <span class="text-red-500">10-15K</span>
+                    </div>
+                    <div class="text-sm text-gray-500 mt-1">前端工程师</div>
+                    <div class="text-xs text-gray-400 mt-1">3-5年 | 学历不限</div>
+                    <div class="mt-2 text-xs text-gray-500">
+                        💬 HR主动邀约：大数据可视化平台，支持弹性办公
+                    </div>
+                    <div class="flex justify-between mt-2">
+                        <span class="text-xs text-bossGreen">深圳·南山区·科技园</span>
+                        <span class="text-xs bg-amber-100 text-amber-600 px-1.5 py-0.5 rounded">待处理</span>
+                    </div>
+                </div>
+                <!-- 邀约5 -->
+                <div class="invite-item p-4 border-b hover:bg-listHover cursor-pointer" data-index="4">
+                    <div class="flex justify-between">
+                        <span class="font-medium">汇科云途</span>
+                        <span class="text-red-500">15-25K</span>
+                    </div>
+                    <div class="text-sm text-gray-500 mt-1">前端开发工程师</div>
+                    <div class="text-xs text-gray-400 mt-1">5-10年 | 本科</div>
+                    <div class="mt-2 text-xs text-gray-500">
+                        💬 HR主动邀约：自研企业SaaS产品，寻找资深前端负责人
+                    </div>
+                    <div class="flex justify-between mt-2">
+                        <span class="text-xs text-bossGreen">深圳·南山区·科技园</span>
+                        <span class="text-xs bg-amber-100 text-amber-600 px-1.5 py-0.5 rounded">待处理</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧详情面板 -->
+        <div class="flex-1 bg-white rounded-lg p-5">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h2 class="text-xl font-bold">前端开发工程师 <span class="text-red-500">13-15K</span></h2>
+                    <div class="flex gap-4 text-sm text-gray-500 mt-2">
+                        <span><i class="fa fa-map-marker"></i> 深圳</span>
+                        <span><i class="fa fa-clock-o"></i> 3-5年</span>
+                        <span><i class="fa fa-graduation-cap"></i> 本科</span>
+                    </div>
+                    <div class="flex items-center gap-2 mt-3">
+                        <span class="font-medium">云启智科</span>
+                        <span class="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded">HR在线，向你发起沟通</span>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <button id="rejectBtn" class="px-4 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-100">
+                        婉拒邀约
+                    </button>
+                    <button id="acceptBtn" class="px-5 py-2 bg-bossGreen text-white rounded-lg text-sm hover:opacity-90">
+                        接受沟通
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t">
+                <h3 class="font-medium mb-2">岗位描述</h3>
+                <div class="text-sm text-gray-600">
+                    <p>C端产品前端开发</p>
+                    <p class="mt-2">负责用户端页面迭代、组件封装、性能优化，需要有成熟C端项目经验。</p>
+                </div>
+            </div>
+            <div class="mt-4 pt-4 border-t">
+                <h3 class="font-medium mb-2">工作地址</h3>
+                <p class="text-sm text-gray-600">深圳福田区创新大厦A座内部</p>
+                <div class="w-full h-40 bg-gray-200 rounded mt-3 flex items-center justify-center text-gray-400">
+                    <i class="fa fa-map-o text-2xl mr-2"></i>地图占位
+                </div>
+            </div>
+
+            <div class="mt-6 p-4 bg-blue-50 rounded-lg text-sm text-blue-700">
+                <b>💡 演示说明：</b>
+                <p class="mt-1">角色反转体验：不是你主动投递找公司，是企业HR浏览到你的简历后主动发起沟通邀约。</p>
+                <p class="mt-1">你拥有主动权，可以选择开启对话沟通，或者直接婉拒本次邀约。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弹窗：婉拒邀约 -->
+    <div id="rejectModal" class="fixed inset-0 mask hidden items-center justify-center z-50">
+        <div class="bg-white w-[420px] rounded-lg p-5">
+            <div class="flex justify-between items-center">
+                <h3 class="font-bold text-lg">婉拒邀约</h3>
+                <span id="closeRejectModal" class="cursor-pointer text-gray-400 text-xl">&times;</span>
+            </div>
+            <div class="mt-4">
+                <p class="text-sm text-gray-600 mb-2">选择拒绝原因：</p>
+                <div class="space-y-2 text-sm">
+                    <label class="flex items-center gap-2"><input type="radio" name="reason" value="薪资不符合预期"> 薪资不符合预期</label>
+                    <label class="flex items-center gap-2"><input type="radio" name="reason" value="通勤距离太远"> 通勤距离太远</label>
+                    <label class="flex items-center gap-2"><input type="radio" name="reason" value="岗位方向不匹配"> 岗位方向不匹配</label>
+                    <label class="flex items-center gap-2"><input type="radio" name="reason" value="已经拿到其他offer"> 已经拿到其他offer</label>
+                    <label class="flex items-center gap-2"><input type="radio" name="reason" value="other"> 其他原因</label>
+                </div>
+                <textarea class="w-full border rounded p-2 mt-3 text-sm" placeholder="补充说明（选填）"></textarea>
+            </div>
+            <div class="flex justify-end gap-3 mt-5">
+                <button id="cancelReject" class="px-4 py-2 border rounded text-sm">取消</button>
+                <button id="confirmReject" class="px-4 py-2 bg-red-500 text-white rounded text-sm">确认婉拒</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弹窗：聊天窗口 -->
+    <div id="chatModal" class="fixed inset-0 mask hidden items-center justify-center z-50">
+        <div class="bg-white w-[500px] h-[600px] rounded-lg flex flex-col overflow-hidden">
+            <div class="px-4 py-3 border-b flex justify-between items-center bg-bossGreen text-white">
+                <span>和【云启智科-HR】对话</span>
+                <span id="closeChatModal" class="cursor-pointer text-xl">&times;</span>
+            </div>
+            <div class="flex-1 p-3 overflow-y-auto bg-gray-50 space-y-3" id="chatBox">
+                <div class="flex">
+                    <div class="bg-white px-3 py-2 rounded-lg shadow-sm max-w-[70%] text-sm">
+                        您好，看到您的前端项目经验很匹配我们C端岗位，想和您沟通一下，请问方便聊聊吗？
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 border-t flex gap-2">
+                <input id="chatInput" class="flex-1 border rounded px-3 py-2 text-sm outline-none" placeholder="输入消息...">
+                <button id="sendMsg" class="bg-bossGreen text-white px-4 py-2 rounded text-sm">发送</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 婉拒弹窗逻辑
+        const rejectModal = document.getElementById('rejectModal');
+        const rejectBtn = document.getElementById('rejectBtn');
+        const closeRejectModal = document.getElementById('closeRejectModal');
+        const cancelReject = document.getElementById('cancelReject');
+        const confirmReject = document.getElementById('confirmReject');
+
+        rejectBtn.onclick = ()=> rejectModal.classList.remove('hidden');
+        [closeRejectModal, cancelReject].forEach(el=>{
+            el.onclick = ()=> rejectModal.classList.add('hidden');
+        })
+        confirmReject.onclick = ()=>{
+            alert("已发送婉拒消息给企业HR");
+            rejectModal.classList.add('hidden');
+        }
+
+        // 聊天弹窗逻辑
+        const chatModal = document.getElementById('chatModal');
+        const acceptBtn = document.getElementById('acceptBtn');
+        const closeChatModal = document.getElementById('closeChatModal');
+        const sendMsg = document.getElementById('sendMsg');
+        const chatInput = document.getElementById('chatInput');
+        const chatBox = document.getElementById('chatBox');
+
+        acceptBtn.onclick = ()=> chatModal.classList.remove('hidden');
+        closeChatModal.onclick = ()=> chatModal.classList.add('hidden');
+
+        sendMsg.onclick = ()=>{
+            const text = chatInput.value.trim();
+            if(!text) return;
+            chatBox.innerHTML += `
+                <div class="flex justify-end">
+                    <div class="bg-bossGreen text-white px-3 py-2 rounded-lg max-w-[70%] text-sm">${text}</div>
+                </div>
+            `
+            chatInput.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+        chatInput.onkeydown = (e)=>{
+            if(e.key === 'Enter') sendMsg.click();
+        }
+
+        // 左侧邀约切换选中
+        const items = document.querySelectorAll('.invite-item');
+        items.forEach(item=>{
+            item.onclick = ()=>{
+                items.forEach(i=>i.classList.remove('bg-listHover'));
+                item.classList.add('bg-listHover');
+            }
+        })
+    </script>
+</body>
+</html>
